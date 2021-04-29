@@ -1,0 +1,33 @@
+<div class="col-md-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3>Edit Porduct</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/product/edit-product/{{product._id}}?_method=PUT">
+                <input type="hidden" name="_method" value="PUT">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name of Product</label>
+                    <input type="text" class="form-control" name="name" value="{{product.name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Amount</label>
+                    <input type="text" class="form-control" name="amount" value="{{product.amount}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Price</label>
+                    <input type="text" class="form-control" name="price" value="{{product.price}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Image</label>
+                    <input type="text" class="form-control" name="image" placeholder="insert url from the image" value="{{product.image}}">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Description</label><br>
+                    <textarea name="description" class="form-control">{{product.description}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

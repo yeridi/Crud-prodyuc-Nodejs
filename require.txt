@@ -1,0 +1,2 @@
+para utilizar el crud 
+npm i express express-handlebars method-override mongoose

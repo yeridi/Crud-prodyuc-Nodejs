@@ -1,0 +1,39 @@
+{{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{text}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{{/each}}
+
+<div class="container col-md-4 mx-auto">
+    <div class="card">
+        <div class="card-header">
+            <h2>New Product</h2>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/product/new-product">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name of Product</label>
+                    <input type="text" class="form-control" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Amount</label>
+                    <input type="text" class="form-control" name="amount">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Price</label>
+                    <input type="text" class="form-control" name="price">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Image</label>
+                    <input type="text" class="form-control" name="image" placeholder="insert url from the image">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Description</label><br>
+                    <textarea name="description" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
