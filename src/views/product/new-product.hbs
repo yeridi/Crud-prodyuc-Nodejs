@@ -1,3 +1,45 @@
+<style>
+    body{
+        background: #8A2387; 
+        background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387); 
+        background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+    }
+    .card{
+        color: #fff !important;
+        background: rgba(243, 243, 243, 0.212) !important;
+    }
+    input{
+        background: rgba(219, 219, 219, 0.521) !important;
+        width: 90% !important;
+        margin: auto !important;
+        color:#fff !important;
+    }
+    textarea{
+        background: rgba(219, 219, 219, 0.521) !important;
+        width: 90% !important;
+        margin: auto !important;
+        color:#fff !important;
+    }
+    .btn-primary{
+        width: 80%;
+        margin: auto;
+        display: block;
+        background: none !important;
+        color: #fff;
+        border-radius: 2rem;
+        border: solid 1px #fff;
+        transform: all 500ms;
+    }
+    .btn-primary:hover{
+        background: #fff !important;
+        color: #000 !important;
+        border: none !important;
+    }
+    .information{
+        background: rgba(219, 219, 219, 0.308) !important;
+        color:#fff !important;
+    }
+</style>
 {{#each errors}}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>{{text}}</strong>
@@ -5,35 +47,43 @@
     </div>
 {{/each}}
 
-<div class="container col-md-4 mx-auto">
-    <div class="card">
-        <div class="card-header">
-            <h2>New Product</h2>
+<div class="container">
+    <div class="row justify-content-evenly align-items-center">
+        <div class="card col-md-4">
+            <div class="card-header">
+                <h2>New Product</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="/product/new-product" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name of Product</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Amount</label>
+                        <input type="text" class="form-control" name="amount">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Price</label>
+                        <input type="text" class="form-control" name="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Description</label><br>
+                        <textarea name="description" class="form-control"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Image</label>
+                        <input type="file" class="form-control" name="images" placeholder="insert url from the image">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Public The Product</button>
+                </form>
+            </div>
         </div>
-        <div class="card-body">
-            <form method="POST" action="/product/new-product">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name of Product</label>
-                    <input type="text" class="form-control" name="name">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Amount</label>
-                    <input type="text" class="form-control" name="amount">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Price</label>
-                    <input type="text" class="form-control" name="price">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Image</label>
-                    <input type="text" class="form-control" name="image" placeholder="insert url from the image">
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Description</label><br>
-                    <textarea name="description" class="form-control"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+        <div class="information col-md-5 text-center p-4">
+            <h1>Remenber!</h1>
+            <h1>GO | APPLICATION</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste corrupti minima pariatur accusantium dolore modi quod maxime iure illum delectus.</p>
+            <i>Lorem ipsum dolor sit amet.</i>
         </div>
     </div>
 </div>

@@ -1,13 +1,24 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product')
+const {unlink} = require('fs-extra')
+const path = require('path')
+
+const fs = require('fs-extra');
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name: '<private>',
+    api_key: private,
+    api_secret: 'private'
+})
 
 router.get('/product/new', (req,res)=>{
     res.render('product/new-product')
 });
 
 router.post('/product/new-product', async(req,res)=>{
-    const {name,amount,price,description,image} = req.body;
+    const {name,amount,price,description} = req.body;
     const errors = [];
     if(!name){
         errors.push({text:'Please insert a name'})
@@ -25,8 +36,10 @@ router.post('/product/new-product', async(req,res)=>{
             image
         })
     }else{
-        const newProduct = new Product({name,amount,price,description,image});
+        const nimage = await cloudinary.uploader.upload(req.file.path);
+        const newProduct = new Product({name,amount,price,description, imageURL:nimage.url, public_id: nimage.public_id});
         await newProduct.save();
+        await fs.unlink(req.file.path);
         req.flash('success_msg',"Product Added Susscessfully")
         res.redirect('/product')
     }
@@ -43,14 +56,23 @@ router.get('/product/edit/:id', async (req,res)=>{
 })
 
 router.put('/product/edit-product/:id', async(req,res)=>{
-    const {name,amount,price,description,image} = req.body;
-    await Product.findByIdAndUpdate(req.params.id, {name,amount,price,description,image});
+    const {name,amount,price,description} = req.body;
+    await Product.findByIdAndUpdate(req.params.id, {name,amount,price,description});
     req.flash('success_msg',"Product update successfully");
     res.redirect('/product');
 })
 
+router.get('/product/:id', async(req,res)=>{
+    const { id } = req.params;
+    const product = await Product.findById(id).lean();
+    console.log(product)
+    res.render('product/product-profile', {product})
+})
+
 router.delete('/product/delete/:id', async (req,res)=>{
-    await Product.findByIdAndDelete(req.params.id);
+    const product = await Product.findByIdAndDelete(req.params.id);
+    cloudinary.uploader.destroy(product.public_id)
+    unlink(path.resolve('./src/public/' + product.path))
     req.flash('success_msg',"Product deleted successfully");
     res.redirect('/product');
 })

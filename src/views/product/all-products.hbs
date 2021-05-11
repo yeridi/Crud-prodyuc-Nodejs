@@ -1,28 +1,40 @@
 <div class="row">  
     {{#each product}}
-    <div class="col-md-4">
+    <div class="col-md-4 mb-5">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title d-flex justify-content-between align-items-center">
                     {{name}} <a href="/product/edit/{{_id}}"><i class="fas fa-edit"></i></a>
                 </h4>
-                <img src="{{image}}" alt="" class="img-thumbnail">
-                <ul>
+                <img src="{{imageURL}}" alt="" class="img-thumbnail">
+                <h5 class="text-center">Information</h5>
+                <ul class="d-flex justify-content-evenly">
+                    <li><strong>Amount:  </strong></li>
                     <li>{{amount}}</li>
+                </ul>
+                <ul class="d-flex justify-content-evenly">
+                    <li><strong>Price:  </strong></li>
                     <li>{{price}}</li>
-                    <li>{{description}}</li>
+                </ul>
+                    <li class="text-center mb-1"><strong>Description: </strong></li>
+                    <ul class="mb-4">
+                        <li><p>{{description}}</p></li>
+                    </ul>
+                <div class="">
                     <form action="/product/delete/{{_id}}?_method=DELETE" method="POST">
                     <input type="hidden" name="_method" value="DELETE">
-                        <button class="btn btn-danger d-block m-auto" type="submit">Delete</button>
+                        <button class="btn btn-danger d-block mb-2 all__button" type="submit">Delete</button>
                     </form>
-                </ul>
+                    <a href="/product/{{_id}}" class="btn btn-primary d-block all__button">See More</a>
+                </div>
             </div>
         </div>
     </div>
     {{else}}
-    <div class="card col-md-4 mx-auto text-center">
+    <div class="card col-md-4 mx-auto text-center mt-5">
         <div class="card-body">
             <p>No products Yet</p>
+            <img src="https://cdn.pixabay.com/photo/2019/10/09/07/28/development-4536630_960_720.png" alt="">
             <a href="/product/new" class="btn btn-primary">Create One Right Now</a>
         </div>
     </div>

@@ -1,7 +1,46 @@
+<style>
+    body{
+        background: #8A2387; 
+        background: -webkit-linear-gradient(to right, #F27121, #E94057, #8A2387); 
+        background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+    }
+    .card{
+        margin: 6rem auto !important;
+        color: #fff !important;
+        background: rgba(243, 243, 243, 0.212) !important;
+    }
+    input{
+        background: rgba(219, 219, 219, 0.521) !important;
+        width: 90% !important;
+        margin: auto !important;
+        color:#fff !important;
+    }
+    textarea{
+        background: rgba(219, 219, 219, 0.521) !important;
+        width: 90% !important;
+        margin: auto !important;
+        color:#fff !important;
+    }
+    .btn-primary{
+        width: 80%;
+        margin: auto;
+        display: block;
+        background: none !important;
+        color: #fff;
+        border-radius: 2rem;
+        border: solid 1px #fff;
+        transform: all 500ms;
+    }
+    .btn-primary:hover{
+        background: #fff !important;
+        color: #000 !important;
+        border: none !important;
+    }
+</style>
 <div class="col-md-4 mx-auto">
     <div class="card">
         <div class="card-header">
-            <h3>Edit Porduct</h3>
+            <h3>Editing Product {{product.name}}</h3>
         </div>
         <div class="card-body">
             <form method="POST" action="/product/edit-product/{{product._id}}?_method=PUT">
@@ -18,10 +57,10 @@
                     <label for="exampleInputPassword1" class="form-label">Price</label>
                     <input type="text" class="form-control" name="price" value="{{product.price}}">
                 </div>
-                <div class="mb-3">
+                {{!-- <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Image</label>
                     <input type="text" class="form-control" name="image" placeholder="insert url from the image" value="{{product.image}}">
-                </div>
+                </div> --}}
                 <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">Description</label><br>
                     <textarea name="description" class="form-control">{{product.description}}</textarea>
